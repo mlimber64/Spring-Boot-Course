@@ -42,25 +42,20 @@ public class vacante {
 	public void setSalario(double salario) {
 		this.salario = salario;
 	}
-	
 	public int getDestacado() {
 		return destacado;
 	}
 	public void setDestacado(int destacado) {
 		this.destacado = destacado;
 	}
-	
 	public String getImagen() {
 		return imagen;
 	}
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-	@Override
-	public String toString() {
-		return "vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
-				+ ", salario=" + salario + ", destacado=" + destacado + ", imagen=" + imagen + "]";
-	}
+	
+	
 	
 	
 	
