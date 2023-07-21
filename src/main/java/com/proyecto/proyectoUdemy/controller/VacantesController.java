@@ -1,9 +1,15 @@
 package com.proyecto.proyectoUdemy.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +30,7 @@ public class VacantesController {
 		
 		return "vacantes/formVacante";
 	}
-	
+	/*
 	@PostMapping("/save")
 	public String save(@RequestParam("nombre") String nombre, @RequestParam("descripcion") String descripcion ,
 			           @RequestParam("estatus") String estatus, @RequestParam("fecha") String fecha , @RequestParam("destacado") int destacado,
@@ -40,6 +46,17 @@ public class VacantesController {
 		
 		
 		return "vacantes/listVacantes";
+	}
+	*/
+	
+	@PostMapping("/save")
+	public String save(vacante vacan) {
+		
+		serviceVancante.guardar(vacan);
+		System.out.println("vacantee:" + vacan);
+		
+		
+		return "detalle";
 	}
 	
 	@GetMapping("/view/{id}")
@@ -61,6 +78,12 @@ public class VacantesController {
 		System.out.println("idVacante: " + idVacante);
 		model.addAttribute("vacante" , vacante);
 		return "mensaje";
+	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 	}
 
 }

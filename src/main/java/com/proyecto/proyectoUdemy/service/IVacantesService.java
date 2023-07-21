@@ -9,5 +9,7 @@ public interface IVacantesService {
 	List<vacante> findAll();
 	
 	vacante buscarxId(Integer id);
+	
+	void guardar(vacante vacan);
 
 }
